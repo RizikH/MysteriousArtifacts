@@ -49,7 +49,7 @@ cd mysterious-artifacts
 ```bash
 npm install
 ```
-### Create a ```bash.env``` File
+### Create a ```.env``` File
 ```bash
 clientID=YOUR_GOOGLE_CLIENT_ID
 clientSecret=YOUR_GOOGLE_CLIENT_SECRET
