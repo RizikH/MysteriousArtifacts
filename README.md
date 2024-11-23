@@ -124,6 +124,6 @@ Contributions, issues, and feature requests are welcome! Feel free to:
 This project is licensed under the MIT License.
 
 # 👨‍💻 Author
-Your Name - [Rizik H](https://github.com/RizikH)
+- [Rizik H](https://github.com/RizikH)
 
 Feel free to reach out for collaboration or questions!"
