@@ -1,0 +1,26 @@
+extends partials/layout 
+
+block layout-content 
+  main.cart 
+    section.cart-items 
+      h2 Shopping Cart
+
+      section.delete-confirm 
+        h2 Are you sure you want to delete this item from your cart?
+        section.confirm-buttons 
+          button.cancel(aria-label="Cancel") Cancel 
+          button.confirm(aria-label="Confirm") Confirm
+
+      section.added-products 
+        each product in cartProducts 
+          include partials/cart-item.pug
+
+        aside.cart-summary 
+          p#subtotal  Subtotal: #{subTotal || '0.00'}
+          p#tax Tax (6.75%): 
+          p#delivery-fee Delivery Fee: 
+          p#total Total: 
+
+          button.checkout-button Proceed to Checkout
+
+      include partials/footer.pug

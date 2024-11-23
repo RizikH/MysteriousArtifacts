@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    block styles 
+      link(rel="stylesheet" href="/styles/style.css")
+      link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css")
+    block scripts
+      script(src="/script.js" defer) 
+    <link rel="icon" href="/resources/background.webp" type="image/webp">
+    title #{title}
+  body 
+    header 
+      block nav 
+        nav.navbar
+          ul
+            li
+              a(href="/MysteriousArtifacts/shop")
+                i.fas.fa-home
+                | Home
+            li
+              a(href="/MysteriousArtifacts/products")
+                i.fas.fa-box-open
+                | Products
+            li
+              a(href="/MysteriousArtifacts/cart")
+                i.fas.fa-shopping-cart
+                | Cart
+            li
+              a(href="#")
+                i.fas.fa-info-circle
+                | About
+            li.search-bar
+              input(type="text" placeholder="Search...")
+              button(type="button")
+                i.fas.fa-search
+                | Search
+            if typeof user !== 'undefined'
+              li
+                img(src=user.profile_image)
+                span= user.displayName
+                a(href="/auth/logout")
+                  i(class="fas fa-sign-out-alt") Logout
+            else
+              li
+                a(href="/auth/google")
+                  i(class="fas fa-sign-in-alt") Login With Google 
+
+        block layout-content

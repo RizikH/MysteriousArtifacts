@@ -1,0 +1,7 @@
+section.product-item
+  input.itemID(type="hidden" name="itemId" value=product.id) 
+  img.product-image(src=product.imageUrl, alt=product.name)
+  h3.product-name #{product.name}
+  p.product-description #{product.description}
+  p.product-price #{product.price}
+  button.add-to-cart-button Add to Cart

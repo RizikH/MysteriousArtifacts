@@ -1,0 +1,23 @@
+extends partials/layout
+
+
+block layout-content
+  main
+    section#videos
+      video#main-page-background.active(src="/resources/media/index-bg.mp4" autoplay muted disablePictureInPicture loop)
+      video#skull.inactive(src="/resources/media/skull.mp4")
+
+    section.cta
+      button#cta-btn.cta-button Discover the Power
+
+    aside.audio-files 
+      audio#index_bg_audio(src="/resources/sound-effects/lullaby-of-woe.mp3")
+      audio#cta-audio(src="/resources/sound-effects/creepy_laugh.mp3")
+      audio#trans-audio(src="/resources/sound-effects/electricity-long.mp3")   
+
+    section#experience-model.model
+      section.model-content
+        h2 Choose Your Experience 
+        button#full-experience.experience-button.fullexperience Full Experience 
+        button#muted-experience.experience-button.muted-experience Semi Muted Experience
+  include partials/footer.pug

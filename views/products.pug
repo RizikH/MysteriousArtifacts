@@ -1,0 +1,12 @@
+extends partials/layout
+
+block layout-content
+
+  main.products-main 
+    section.products
+      section.products-container 
+        //Products will be Dynamically loaded here
+        each product in products
+          include partials/product 
+
+  include partials/footer.pug
