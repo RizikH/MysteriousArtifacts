@@ -42,7 +42,7 @@ Follow these steps to get the project up and running locally:
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/yourusername/mysterious-artifacts.git
+git clone https://github.com/RizikH/mysterious-artifacts.git
 cd mysterious-artifacts
 ```
 ### Install Dependencies
