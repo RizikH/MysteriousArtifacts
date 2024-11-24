@@ -9,7 +9,6 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback'
 }, (token, tokenSecret, profile, done) => {
 
-    console.log("profile: ", profile);
     const newUser = {
         userId: profile.id,
         userName: profile.displayName,

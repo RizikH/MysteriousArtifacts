@@ -108,28 +108,36 @@ function setUpAdd () {
   })
 }
 
-function sendToCart (product) {
-  const itemIDInput = product.querySelector('.itemID')
+function sendToCart(product) {
+  const itemIDInput = product.querySelector('.itemID');
   if (!itemIDInput) {
-    alert('Item ID not found!')
-    return
+    alert('Item ID not found!');
+    return;
   }
 
-  let id = itemIDInput.value
-  let params = { product_id: id }
+  let id = itemIDInput.value;
+  let params = { product_id: id };
 
-  fetch('http://localhost:3000/MysteriousArtifacts/add', {
+  fetch('/MysteriousArtifacts/add', {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   })
-    .then(checkStatus)
-    .then(reload)
-    .catch(error => console.error('Error:', error))
+    .then(response => {
+      if (response.status === 401) {
+        window.location.href = '/auth/login';
+      } else if (response.ok) {
+        window.location.href = '/MysteriousArtifacts/cart';
+      } else {
+        throw new Error('Failed to add to cart');
+      }
+    })
+    .catch(error => console.error('Error:', error));
 }
+
 
 function setUpDeleteButton () {
   const products = document.querySelectorAll('.cart-item')
@@ -149,7 +157,7 @@ function deleteProduct (productID) {
   console.log('Product id to delete ', productID)
   let params = { productID: productID }
 
-  fetch('http://localhost:3000/MysteriousArtifacts/remove', {
+  fetch('/MysteriousArtifacts/remove', {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain, */*',
@@ -166,6 +174,9 @@ function reload () {
   location.reload()
 }
 
+function loadCart () {
+  location.href = "/MysteriousArtifacts/cart"
+}
 function checkStatus (response) {
   if (!response.ok) {
     throw new Error('Error in request: ' + response.statusText)

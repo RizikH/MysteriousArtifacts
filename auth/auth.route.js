@@ -13,19 +13,16 @@ router.get(
     })
 );
 
-router.get(
-    "/google/callback",
-    passport.authenticate("google", {
-        scope: ['profile', 'email'],
-        keepSessionInfo: true,
-        failureRedirect: "/",
-    }),
+router.get('/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/' }), 
     (req, res) => {
-        const redirectTo = req.session.returnTo || '/'; // Provide a default fallback
-        delete req.session.returnTo; // Optional: Clear it after redirection if you want
-        res.redirect(redirectTo);
+      const redirectTo = req.session.returnTo || '/MysteriousArtifacts/shop';
+      delete req.session.returnTo;
+      res.redirect(redirectTo);
     }
-);
+  );
+  
+  
 
 
 router.get("/login", (req, res) => {
@@ -37,7 +34,7 @@ router.get("/logout", function (req, res, next) {
         if (err) {
             return next(err);
         }
-        res.redirect("/");
+        res.redirect("/MysteriousArtifacts/shop");
     });
 });
 

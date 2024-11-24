@@ -33,8 +33,7 @@ app.use("/MysteriousArtifacts", shopRoutes);
 
 //Home Page
 app.get("/", (req, res) => {
-  req.session.returnTo = req.originalUrl;
-  res.render("index", { title: 'Home Page', user: req.user });
+  res.redirect("/MysteriousArtifacts/shop");
 });
 
 const PORT = process.env.PORT || 3000;

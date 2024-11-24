@@ -36,12 +36,13 @@ html(lang="en")
               button(type="button")
                 i.fas.fa-search
                 | Search
-            if typeof user !== 'undefined'
+            if user !== null 
               li
-                img(src=user.profile_image)
-                span= user.displayName
-                a(href="/auth/logout")
-                  i(class="fas fa-sign-out-alt") Logout
+                section.profile
+                  img(src=user.user_img)
+                  span= user.user_name
+                  a(href="/auth/logout")
+                    i(class="fas fa-sign-out-alt") Logout
             else
               li
                 a(href="/auth/google")

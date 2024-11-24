@@ -2,7 +2,12 @@ extends partials/layout
 
 block layout-content
 
-  main.products-main 
+  main.products-main
+    if user
+      input(type="hidden", name="user-id", value=user.user_id, id="hiddenUserId")
+    else
+      input(type="hidden", name="user-id", value=null, id="hiddenUserId")
+
     section.products
       section.products-container 
         //Products will be Dynamically loaded here

@@ -1,8 +1,13 @@
-extends partials/layout 
-
-block layout-content 
-  section.login-container
-        h2.login-header Please log in to continue
-        a.google-login-button(href="/auth/google")
-          i.fab.fa-google
-          |  Continue with Google
+doctype html
+html
+  head
+    title Login - Mysterious Artifacts
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/styles/style.css")
+  body
+    section.login-container
+      h2.login-header Please log in to continue
+      a.google-login-button(href="/auth/google")
+        i.fab.fa-google
+        |  Continue with Google

@@ -1,5 +1,6 @@
 const db = require('./db-conn')
 
+// Get all products
 function getProducts () {
   const sql = `
     SELECT 
@@ -13,115 +14,120 @@ function getProducts () {
   return db.all(sql)
 }
 
-function getProductById (productID) {
+// Get a cart for a user or create a new one if it doesn't exist
+function getCart (userId) {
+  const sql = `
+    SELECT *
+    FROM carts
+    WHERE cart_status = 'new' AND user_id = ?;
+  `
+  const cart = db.get(sql, userId)
+  return cart ? cart : createNewCart(userId)
+}
+
+// Create a new cart
+function createNewCart (userId) {
+  const sql = `
+    INSERT INTO carts(user_id, cart_status)
+    VALUES(?, 'new');
+  `
+  db.run(sql, userId)
+  return getCart(userId) // Return the newly created cart ID
+}
+
+// Get details of a specific product by its ID
+function getProductById (productId) {
   const sql = `
     SELECT *
     FROM products
     WHERE product_id = ?;
   `
-  return db.get(sql, productID)
+  return db.get(sql, productId)
 }
 
-function createNewCart (userID) {
+// Get all products in a cart
+function getCartProducts (cartId) {
   const sql = `
-    INSERT INTO carts(user_id, cart_status)
-    VALUES(?, 'new');
-  `
-  return db.run(sql, userID)
-}
-
-function getCartId (userId) {
-  const sql = `
-    SELECT cart_id
-    FROM carts
-    WHERE cart_status = 'new' AND user_id = ?;
-  `
-  const data = db.get(sql, userId)
-  return data ? data.cart_id : createNewCart(userId)
-}
-
-function getCartProducts (cartID) {
-  const sql = `
-    SELECT p.product_id, p.product_name, p.product_description, p.product_image_url, p.product_price, cp.cart_product_quantity
+    SELECT 
+      p.product_id, 
+      p.product_name, 
+      p.product_description, 
+      p.product_image_url, 
+      p.product_price, 
+      cp.cart_product_quantity
     FROM cart_products cp
     JOIN products p ON cp.product_id = p.product_id
     WHERE cp.cart_id = ?;
   `
-  return db.all(sql, cartID)
+  return db.all(sql, cartId)
 }
 
-function getCartTotal (cartId) {
-  const sql = 'SELECT cart_total FROM carts WHERE cart_id = ?'
-  return db.get(sql, cartId)
-}
-function sendToCart (cartID, productID) {
-  if (checkIfExists(cartID, productID)) {
-    return addQuantity(cartID, productID)
-  }
-  const sql = `
-    INSERT INTO cart_products (cart_id, product_id, cart_product_quantity)
-    VALUES(?,?,?);
-  `
-  return db.runParams(sql, cartID, Number(productID), 1)
-}
-
-function addQuantity (cart_id, product_id) {
-  const sql = `
-    UPDATE cart_products
-    SET cart_product_quantity = cart_product_quantity + 1
-    WHERE cart_id = ? AND product_id = ?;
-  `
-  return db.runParams(sql, cart_id, product_id)
-}
-
-function minusQuantity (cart_id, product_id) {
-  const sql = `
-    UPDATE cart_products
-    SET cart_product_quantity = cart_product_quantity - 1
-    WHERE cart_id = ? AND product_id = ?;
-  `
-  return db.runParams(sql, cart_id, product_id)
-}
-
-function checkIfExists (cartID, productID) {
-  const product_id = Number(productID)
+// Check if a product exists in a cart
+function checkIfExists (cartId, productId) {
   const sql = `
     SELECT product_id
     FROM cart_products
-    WHERE cart_id = ?;
+    WHERE cart_id = ? AND product_id = ?;
   `
-  const data = db.all(sql, cartID)
-  if (!data || data.length === 0) return false
-  return data.some(element => element.product_id === product_id)
+  const product = db.get(sql, cartId, productId)
+  return !!product // Returns true if the product exists, false otherwise
 }
 
-function deleteProduct (cartID, productID) {
-  if (checkIfExists(cartID, productID)) {
-    const sql = `
-      DELETE from cart_products
-      WHERE cart_id =? AND product_id =?;
-    `
-    return db.runParams(sql, cartID, productID)
-  } else {
-    console.log(
-      'Failed to delete product with id = ',
-      productID,
-      ' where cart id = ',
-      cartID,
-      ' Product or cart does not exit.'
+// Add a product to a cart
+function sendToCart (cartId, productId) {
+  if (checkIfExists(cartId, productId)) {
+    return updateQuantity(cartId, productId, 1) // Increment quantity if the product already exists
+  }
+  const sql = `
+    INSERT INTO cart_products (cart_id, product_id, cart_product_quantity)
+    VALUES (?, ?, 1);
+  `
+  return db.runParams(sql, cartId, productId)
+}
+
+// Increment or decrement product quantity in a cart
+function updateQuantity (cartId, productId, change) {
+  const sql = `
+    UPDATE cart_products
+    SET cart_product_quantity = cart_product_quantity + ?
+    WHERE cart_id = ? AND product_id = ?;
+  `
+  return db.runParams(sql, change, cartId, productId)
+}
+
+// Decrease quantity of a product in a cart
+function minusQuantity (cartId, productId) {
+  return updateQuantity(cartId, productId, -1)
+}
+
+// Increase quanitity of a product in a cart
+function plusQuantity (cartId, productId) {
+  return updateQuantity(cartId, productId, 1)
+}
+
+// Delete a product from a cart
+function deleteProduct (cartId, productId) {
+  if (!checkIfExists(cartId, productId)) {
+    console.error(
+      `Failed to delete: Product with ID = ${productId} not found in cart ID = ${cartId}.`
     )
     throw new Error('Error deleting product')
   }
+  const sql = `
+    DELETE FROM cart_products
+    WHERE cart_id = ? AND product_id = ?;
+  `
+  return db.runParams(sql, cartId, productId)
 }
 
 module.exports = {
   getProducts,
-  getCartId,
+  getCart,
   getCartProducts,
   sendToCart,
   createNewCart,
-  getCartTotal,
-  addQuantity,
   minusQuantity,
-  deleteProduct
+  plusQuantity,
+  deleteProduct,
+  getProductById
 }

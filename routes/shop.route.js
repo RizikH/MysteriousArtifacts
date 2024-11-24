@@ -1,30 +1,32 @@
-"use strict";
-const express = require("express");
-const router = express.Router();
+'use strict'
+const express = require('express')
+const router = express.Router()
 
-const shopController = require("../controllers/shop.controller");
+const shopController = require('../controllers/shop.controller')
 
 //http://localhost:3000/MysteriousArtifacts/shop
-router.get("/shop", shopController.redirectHome);
+router.get('/shop', shopController.redirectHome)
 
 //http://localhost:3000/MysteriousArtifacts/products
-router.get("/products", shopController.redirectProducts);
+router.get('/products', shopController.redirectProducts)
 
 //http://localhost:3000/MysteriousArtifacts/cart
-router.get("/cart", ensureAuth, shopController.redirectCart);
+router.get('/cart', ensureAuth, shopController.redirectCart)
 
 //http://localhost:3000/MysteriousArtifacts/cart/add
-router.post("/add", ensureAuth, shopController.sendToCart);
+router.post('/add', ensureAuth, shopController.sendToCart);
 
-router.post("/remove", ensureAuth, shopController.deleteFromCart);
+//http://localhost:3000/MysteriousArtifacts/cart/remove
+router.post('/remove', ensureAuth, shopController.deleteFromCart)
 
+router.post('/cart/update', ensureAuth, shopController.updateCart)
 
 function ensureAuth(req, res, next) {
-  req.session.returnTo = req.originalUrl;
-   if (!req.isAuthenticated()) {
-     return res.redirect('/auth/login');
-   }  
-   next();
- }
+  if (!req.isAuthenticated()) {
+    req.session.returnTo = req.originalUrl;
+    return res.redirect('/auth/login');
+  }
+  next();
+}
 
-module.exports = router;
+module.exports = router

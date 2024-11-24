@@ -16,10 +16,10 @@ block layout-content
           include partials/cart-item.pug
 
         aside.cart-summary 
-          p#subtotal  Subtotal: #{subTotal || '0.00'}
-          p#tax Tax (6.75%): 
-          p#delivery-fee Delivery Fee: 
-          p#total Total: 
+          p#subtotal  Subtotal: #{cart.cart_sub || '0.00'}
+          p#tax Tax (6.75%): #{cart.cart_tax || '0.00'}
+          p#delivery-fee Delivery Fee: 9.99
+          p#total Total: #{cart.cart_total || '0.00'}
 
           button.checkout-button Proceed to Checkout
 
