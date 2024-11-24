@@ -6,7 +6,7 @@ const userModel = require("../models/users.model");
 passport.use(new GoogleStrategy({
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: 'https://mysterious-artifacts.vercel.app/auth/google/callback'
 }, (token, tokenSecret, profile, done) => {
 
     const newUser = {
