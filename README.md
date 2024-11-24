@@ -42,14 +42,14 @@ Follow these steps to get the project up and running locally:
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/yourusername/mysterious-artifacts.git
+git clone https://github.com/RizikH/mysterious-artifacts.git
 cd mysterious-artifacts
 ```
 ### Install Dependencies
 ```bash
 npm install
 ```
-### Create a ```bash.env``` File
+### Create a ```.env``` File
 ```bash
 clientID=YOUR_GOOGLE_CLIENT_ID
 clientSecret=YOUR_GOOGLE_CLIENT_SECRET
@@ -124,6 +124,6 @@ Contributions, issues, and feature requests are welcome! Feel free to:
 This project is licensed under the MIT License.
 
 # 👨‍💻 Author
-Your Name - [Rizik H](https://github.com/RizikH)
+- [Rizik H](https://github.com/RizikH)
 
 Feel free to reach out for collaboration or questions!"
