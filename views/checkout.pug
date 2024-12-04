@@ -1,0 +1,24 @@
+extends partials/layout 
+
+block layout-content 
+    section.message
+        h1 Thank You
+        p Thank you for your purchase, #{user.user_name}!
+        p Your order ID is: 
+            strong #{order.order_id}
+        p You will receive an email confirmation shortly at 
+            strong #{user.user_email}.
+    section.details
+        h2 Order Summary
+        ul.order-items
+            each item in cartItems
+                li
+                    span.item-name #{item.product_name}
+                    span.item-quantity x#{item.cart_product_quantity}
+                    span.item-price $#{item.product_price}
+        div.total
+            h3 Total: $#{order.order_total}
+    section.actions
+        button.continue-shopping(onclick="window.location.href='/'") Continue Shopping
+
+    include partials/footer.pug

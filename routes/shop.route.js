@@ -14,19 +14,21 @@ router.get('/products', shopController.redirectProducts)
 router.get('/cart', ensureAuth, shopController.redirectCart)
 
 //http://localhost:3000/MysteriousArtifacts/cart/add
-router.post('/add', ensureAuth, shopController.sendToCart);
+router.post('/add', ensureAuth, shopController.sendToCart)
 
 //http://localhost:3000/MysteriousArtifacts/cart/remove
-router.post('/remove', ensureAuth, shopController.deleteFromCart)
+router.post('/remove', shopController.deleteFromCart)
 
-router.post('/cart/update', ensureAuth, shopController.updateCart)
+router.post('/cart/update', shopController.updateCart)
 
-function ensureAuth(req, res, next) {
+router.post('/cart/checkout', shopController.checkout)
+
+function ensureAuth (req, res, next) {
   if (!req.isAuthenticated()) {
-    req.session.returnTo = req.originalUrl;
-    return res.redirect('/auth/login');
+    req.session.returnTo = req.originalUrl
+    return res.redirect('/auth/login')
   }
-  next();
+  next()
 }
 
 module.exports = router

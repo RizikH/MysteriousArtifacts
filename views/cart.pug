@@ -21,6 +21,8 @@ block layout-content
           p#delivery-fee Delivery Fee: 9.99
           p#total Total: #{cart.cart_total || '0.00'}
 
-          button.checkout-button Proceed to Checkout
+          form(action="/MysteriousArtifacts/cart/checkout" method="POST")
+            input(type="hidden" name="cartId", value=cart.cart_id)
+            button.checkout-button(type="submit") Checkout
 
-      include partials/footer.pug
+  include partials/footer.pug
