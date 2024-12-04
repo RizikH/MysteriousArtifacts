@@ -14,11 +14,11 @@ block layout-content
             each item in cartItems
                 li
                     span.item-name #{item.product_name}
-                    span.item-quantity x#{item.cart_product_quantity}
-                    span.item-price $#{item.product_price}
+                    span.item-quantity x #{item.cart_product_quantity}
+                    span.item-price $ #{item.product_price}
         div.total
-            h3 Total: $#{order.order_total}
+            h3 Total: $ #{order.order_total}
     section.actions
-        button.continue-shopping(onclick="window.location.href='/'") Continue Shopping
+        a.continue-shopping(href="/MysteriousArtifacts/products") Continue Shopping
 
     include partials/footer.pug

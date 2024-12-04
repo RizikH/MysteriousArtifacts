@@ -454,6 +454,110 @@ input[type="number"] {
     margin-left: 5px;
     margin-right: 5px;
 }
+
+/* Message Section */
+section.message {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+section.message h1 {
+    font-size: 2.5rem;
+    color: #39FF14;
+    margin-bottom: 20px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+section.message p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+section.message strong {
+    color: #39FF14;
+}
+
+/* Order Details Section */
+section.details {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+section.details h2 {
+    font-size: 2rem;
+    color: #39FF14;
+    margin-bottom: 20px;
+}
+
+ul.order-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.order-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+ul.order-items li span {
+    font-size: 1rem;
+}
+
+ul.order-items li span.item-name {
+    flex: 2;
+    font-weight: bold;
+}
+
+ul.order-items li span.item-quantity,
+ul.order-items li span.item-price {
+    flex: 1;
+    text-align: right;
+}
+
+div.total {
+    margin-top: 20px;
+    text-align: right;
+}
+
+div.total h3 {
+    font-size: 1.5rem;
+    color: #39FF14;
+}
+
+/* Action Section */
+section.actions {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.continue-shopping {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    background-color: #39FF14;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.continue-shopping:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #39FF14;
+}
+
 @keyframes glow {
     from {
         box-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 30px #39FF14;

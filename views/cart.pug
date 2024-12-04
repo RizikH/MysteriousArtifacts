@@ -5,24 +5,21 @@ block layout-content
     section.cart-items 
       h2 Shopping Cart
 
-      section.delete-confirm 
-        h2 Are you sure you want to delete this item from your cart?
-        section.confirm-buttons 
-          button.cancel(aria-label="Cancel") Cancel 
-          button.confirm(aria-label="Confirm") Confirm
+      if cartProducts.length > 0
+        section.added-products 
+          each product in cartProducts 
+            include partials/cart-item.pug
 
-      section.added-products 
-        each product in cartProducts 
-          include partials/cart-item.pug
+          aside.cart-summary 
+            p#subtotal  Subtotal: #{cart.cart_sub || '0.00'}
+            p#tax Tax (6.75%): #{cart.cart_tax || '0.00'}
+            p#delivery-fee Delivery Fee: 9.99
+            p#total Total: #{cart.cart_total || '0.00'}
 
-        aside.cart-summary 
-          p#subtotal  Subtotal: #{cart.cart_sub || '0.00'}
-          p#tax Tax (6.75%): #{cart.cart_tax || '0.00'}
-          p#delivery-fee Delivery Fee: 9.99
-          p#total Total: #{cart.cart_total || '0.00'}
-
-          form(action="/MysteriousArtifacts/cart/checkout" method="POST")
-            input(type="hidden" name="cartId", value=cart.cart_id)
-            button.checkout-button(type="submit") Checkout
+            form(action="/MysteriousArtifacts/cart/checkout" method="POST")
+              input(type="hidden" name="cartId", value=cart.cart_id)
+              button.checkout-button(type="submit") Checkout
+      else
+        p Your cart is empty.
 
   include partials/footer.pug
