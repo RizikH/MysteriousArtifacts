@@ -94,6 +94,9 @@ Cart Operations:
 - Update quantities.
 - Remove items.
 - View the subtotal, tax, and total.
+Admin Panel:
+- Manage product listings (add, update, or delete).
+- Bulk upload of products in JSON format.
 Database Integration:
 - Products, users, and carts are managed with SQLite for fast and lightweight storage.
 
@@ -108,10 +111,18 @@ Database Integration:
 ### 🛒 Cart Page
 ![Cart Page](/public/resources/media/project-screenshots/cart-page.png)
 
+### ⚙️ Admin Panel 
+- Manage Products
+![Admin_Product_Page](/public/resources/media/project-screenshots/admin-product-view.png)
+![Admin_Product_Add](/public/resources/media/project-screenshots/admin-product-add.png)
+
+- Bulk Upload
+![Admin_upload](/public/resources/media/project-screenshots/admin-upload-view.png)
+
 # 📝 Future Enhancements
 - 💳 Payment Integration: Add Stripe or PayPal for real transactions.
 - 🔍 Search and Filtering: Enable product search and category-based filtering.
-- 📊 Admin Panel: Manage products, orders, and users from a dedicated admin interface.
+- 📊 Advanced Admin Features: Analytics and reporting for sales and users, and order handling.
 - 📦 Order Tracking: Allow users to view and track their orders.
 
 # 🤝 Contributing
