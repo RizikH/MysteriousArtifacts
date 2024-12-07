@@ -43,9 +43,13 @@ html(lang="en")
                   span= user.user_name
                   a(href="/auth/logout")
                     i(class="fas fa-sign-out-alt") Logout
+                  if user.user_type === 'admin'
+                    a(href="/MysteriousArtifacts/admin/products") Admin View
             else
               li
                 a(href="/auth/google")
                   i(class="fas fa-sign-in-alt") Login With Google 
+            
+
 
         block layout-content

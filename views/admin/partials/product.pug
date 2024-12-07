@@ -1,0 +1,20 @@
+tr
+    form(action="/MysteriousArtifacts/admin/edit" method="post")
+        td #{product.id}
+            input(type="hidden" name="id" value=product.id)
+        td
+            input(type="text" class="editable-field" name="name" value=product.name)
+        td
+            textarea(class="editable-field" name="description")= product.description
+        td
+            input(type="text" class="editable-field" name="category_id" value=product.category_id)
+        td
+            input(type="text" class="editable-field" name="imageUrl" value=product.imageUrl)
+        td
+            input(type="number" class="editable-field" name="price" value=product.price step="0.01")
+        td
+            button(type="submit" class="edit") Save
+    form(action="/MysteriousArtifacts/admin/delete" method="post" style="display: inline; margin-left: 8px;")
+        td   
+            input(type="hidden" name="id" value=product.id)
+            button(type="submit" class="delete") Delete

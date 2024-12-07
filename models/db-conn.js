@@ -19,9 +19,14 @@ function runParams(sql, ...params) {
   return db.prepare(sql).run(params);
 }
 
+function runParamsExtracted(sql, params) {
+  return db.prepare(sql).run(...params);
+}
+
 function exec(sql) {
   return db.exec(sql);
 }
+
 
 function db_close() {
   console.log("...Closing database connection.")
@@ -33,6 +38,7 @@ module.exports = {
   get,
   run,
   runParams,
+  runParamsExtracted,
   exec,
   db_close
 };

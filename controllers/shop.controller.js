@@ -1,12 +1,12 @@
 'use strict';
+
 const shopModel = require('../models/shop.model');
 const userModel = require('../models/users.model');
 
-// Redirect to Home Page
+// Home Functions
 function redirectHome(req, res) {
 	try {
 		const user = req.user ? userModel.getUserById(req.user.id) : null;
-
 		res.render('index', {
 			title: 'Home - Mysterious Artifacts',
 			user
@@ -17,6 +17,7 @@ function redirectHome(req, res) {
 	}
 }
 
+// Product Functions
 function redirectProducts(req, res) {
 	try {
 		const user = req.user ? userModel.getUserById(req.user.id) : null;
@@ -24,7 +25,7 @@ function redirectProducts(req, res) {
 		res.render('products', {
 			products,
 			title: 'Products - Mysterious Artifacts',
-			user // Pass the user object, which might be null
+			user
 		});
 	} catch (error) {
 		console.error('Error in redirectProducts:', error);
@@ -32,6 +33,7 @@ function redirectProducts(req, res) {
 	}
 }
 
+// Cart Functions
 function sendToCart(req, res) {
 	try {
 		const user = userModel.getUserById(req.user.id);
@@ -44,7 +46,6 @@ function sendToCart(req, res) {
 	}
 }
 
-// Redirect to Cart Page
 function redirectCart(req, res) {
 	try {
 		const user = userModel.getUserById(req.user.id);
@@ -62,7 +63,6 @@ function redirectCart(req, res) {
 	}
 }
 
-// Delete a Product from the Cart
 function deleteFromCart(req, res) {
 	try {
 		const user = userModel.getUserById(req.user.id);
@@ -84,28 +84,24 @@ function updateCart(req, res) {
 
 	if (quantity === '1' && action === 'decrease') {
 		shopModel.deleteProduct(cart.cart_id, productID);
-		res.redirect('/MysteriousArtifacts/cart');
-	}
-
-	if (req.body.action === 'decrease') {
+	} else if (action === 'decrease') {
 		shopModel.minusQuantity(cart.cart_id, productID);
-		res.redirect('/MysteriousArtifacts/cart');
 	} else {
 		shopModel.plusQuantity(cart.cart_id, productID);
-		res.redirect('/MysteriousArtifacts/cart');
 	}
+
+	res.redirect('/MysteriousArtifacts/cart');
 }
 
+// Checkout Functions
 function checkout(req, res) {
 	const cart = shopModel.getCartById(req.body.cartId);
 	const user = userModel.getUserById(cart.user_id);
-	const userId = user.user_id;
 
 	const orderCreated = shopModel.createOrder(cart.cart_id, cart.cart_total);
 	const orderId = orderCreated.lastInsertRowid;
 
 	const order = shopModel.getOrder(orderId);
-
 	shopModel.checkout(cart.cart_id);
 
 	const cartItems = shopModel.getCartProducts(cart.cart_id);

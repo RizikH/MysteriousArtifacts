@@ -1,0 +1,40 @@
+extends partials/layout
+
+block layout-content
+    main.products
+        nav.admin-nav
+            ul
+                li
+                    a(href="/MysteriousArtifacts/admin/products") Admin Products
+                li
+                    a(href="/MysteriousArtifacts/admin/upload") Admin Upload
+                li
+                    a(href="/auth/logout") Sign Out
+
+        section.content-box
+            h2 Upload Products
+            p Please upload a file containing product details in one of the following formats: .json, .txt, or .csv.
+            p The file structure should match the following example:
+            pre.example
+                | {
+                |     "products": [
+                |         {
+                |             "product_name": "Test Product 1",
+                |             "category_id": 1,
+                |             "product_description": "Test description for product 1",
+                |             "product_image_url": "https://example.com/test-product1.jpg",
+                |             "product_price": 19.99
+                |         },
+                |         {
+                |             "product_name": "Test Product 2",
+                |             "category_id": 2,
+                |             "product_description": "Test description for product 2",
+                |             "product_image_url": "https://example.com/test-product2.jpg",
+                |             "product_price": 29.99
+                |         }
+                |     ]
+                | }
+
+            form(method="POST" action="/MysteriousArtifacts/admin/uploadSubmit" enctype="multipart/form-data")
+                input(type="file" name="file" accept=".json,.txt,.csv")
+                button(type="submit") Upload

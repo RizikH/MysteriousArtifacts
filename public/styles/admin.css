@@ -1,14 +1,17 @@
+/* General Reset */
 body {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: #1c1c1c;
     margin: 0;
     height: 100vh;
     font-family: Arial, sans-serif;
-}
-
-main {
+  }
+  
+  /* Main Layout */
+  main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,21 +19,22 @@ main {
     width: 80%;
     border-radius: 15px;
     background-color: #2b2b2b;
-    overflow: hidden;
-}
-
-.admin-nav {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* Navigation */
+  .admin-nav {
     height: 100%;
     width: 25%;
     background-color: #3a3a3a;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
-
-.admin-nav ul {
+    border-radius: 15px 0 0 15px;
+  }
+  
+  .admin-nav ul {
     list-style: none;
     margin: 0;
     padding: 10px;
@@ -40,193 +44,177 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-.admin-nav li {
+  }
+  
+  .admin-nav li {
     background-color: #4a4a4a;
     border: 1px solid #3a3a3a;
     border-radius: 10px;
     width: 80%;
     text-align: center;
-    padding: 0;
-}
-
-.admin-nav a {
+  }
+  
+  .admin-nav a {
     text-decoration: none;
     color: white;
     display: block;
     padding: 10px 20px;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
     transition: background-color 0.3s ease;
-}
-
-
-.admin-nav a:hover {
-    background-color: #5c5c5c; 
-}
-
-
-.content-box {
+  }
+  
+  .admin-nav a:hover {
+    background-color: #5c5c5c;
+  }
+  
+  /* Content Box */
+  .content-box,
+  .edit-box {
     width: 75%;
     background-color: #fff;
     padding: 20px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 0 15px 15px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     max-width: 100%;
-    overflow: hidden;
-}
-
-#uploadForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-}
-
-
-.upload-label {
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    text-align: center;
-    padding: 40px;
-    cursor: pointer;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-
-.upload-container {
-    display: flex;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .edit-box {
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.upload-icon {
-    width: 40px;
-    height: 40px;
-}
-
-.upload-text {
-    font-size: 18px;
-    font-weight: 500;
-    color: #333;
-}
-
-.upload-instructions {
-    font-size: 14px;
-    color: #666;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.upload-label:hover {
-    border-color: #4a90e2;
-    background-color: #f1f5ff;
-}
-
-.filter-container {
-    display: inline;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.product-table {
-    width: 100%;
-    margin-bottom: 20px;
-    overflow-x: auto;
-}
-
-.product-table th, .product-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-.product-table th {
-    background-color: #f4f4f4;
-}
-.product-image {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-}
-.edit-box {
-    width: 75%;
-    background-color: #fff;
-    padding: 30px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.edit-box h2 {
+  }
+  
+  .edit-box h2 {
     font-size: 24px;
     color: #333;
-}
-
-#edit-product-form {
+  }
+  
+  /* Add Product Form */
+  .addProductForm {
     display: flex;
     flex-direction: column;
-}
-
-#edit-product-form label {
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .addProductForm label {
+    font-weight: bold;
     font-size: 14px;
     color: #333;
-    margin-bottom: 5px;
-}
-
-#edit-product-form input,
-#edit-product-form textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
+  }
+  
+  .addProductForm input,
+  .addProductForm textarea,
+  .addProductForm button {
+    padding: 0.5rem;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-#edit-product-form input[readonly] {
-    background-color: #e9e9e9;
-    cursor: not-allowed;
-}
-
-#edit-product-form button {
-    padding: 10px 15px;
-    font-size: 14px;
+  }
+  
+  .addProductForm button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addProductForm button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
     cursor: pointer;
-}
-
-#edit-product-form button[type="submit"] {
-    background-color: #4a90e2;
-    color: white;
-}
-
-#edit-product-form button[type="submit"]:hover {
-    background-color: #357abd;
-}
-
-#edit-product-form button[type="button"] {
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button.edit {
+    background-color: #28a745;
+  }
+  
+  button.edit:hover {
+    background-color: #218838;
+  }
+  
+  button.delete {
+    background-color: #dc3545;
+  }
+  
+  button.delete:hover {
+    background-color: #c82333;
+  }
+  
+  
+  button[type="button"] {
     background-color: #ccc;
-    color: black;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #bbb;
+  }
+  
+  .example {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-wrap;
+    overflow-y: auto;
 }
 
-#edit-product-form button[type="button"]:hover {
-    background-color: #bbb;
+  /* Table */
+  .product-table {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+  
+  .product-table th,
+  .product-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .product-table th {
+    background-color: #f4f4f4;
+  }
+
+  .editable-field {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea.editable-field {
+    width: 100%;
+    height: 80px;
+    resize: vertical;
+    padding: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.editable-field-id {
+    background-color: #f0f0f0;
 }

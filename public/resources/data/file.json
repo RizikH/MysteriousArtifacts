@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+            "product_name": "The Chrono Compass",
+            "category_id": 1,
+            "product_description": "A mystical compass that points not to the north, but to the moment in time you most desire to revisit. Its golden casing is adorned with intricate runes.",
+            "product_image_url": "https://mysteriousartifacts.s3.us-east-2.amazonaws.com/TheChronoCompass.webp",
+            "product_price": 199.99
+        },
+        {
+            "product_name": "Ethereal Lantern",
+            "category_id": 2,
+            "product_description": "A lantern imbued with ethereal light, illuminating even the darkest of spaces. Its glass panels shimmer with a ghostly glow.",
+            "product_image_url": "https://mysteriousartifacts.s3.us-east-2.amazonaws.com/EtherealLantern.webp",
+            "product_price": 49.99
+        },
+        {
+            "product_name": "Phoenix Feather Quill",
+            "category_id": 1,
+            "product_description": "A writing instrument crafted from the feather of a mythical phoenix. It radiates warmth and ensures the words you write are never forgotten.",
+            "product_image_url": "https://mysteriousartifacts.s3.us-east-2.amazonaws.com/PhoenixFeatherQuill.webp",
+            "product_price": 29.99
+        }
+    ]
+}
