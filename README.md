@@ -113,11 +113,13 @@ Database Integration:
 
 ### ⚙️ Admin Panel 
 - Manage Products
-![Admin_Product_Page](/public/resources/media/project-screenshots/admin-product-view.png)
-![Admin_Product_Add](/public/resources/media/project-screenshots/admin-product-add.png)
+![Admin Product Page](/public/resources/media/project-screenshots/admin-product-view.png)
+
+- Add Product
+![Admin Product Add](/public/resources/media/project-screenshots/admin-product-add.png)
 
 - Bulk Upload
-![Admin_upload](/public/resources/media/project-screenshots/admin-upload-view.png)
+![Admin upload](/public/resources/media/project-screenshots/admin-upload-view.png)
 
 # 📝 Future Enhancements
 - 💳 Payment Integration: Add Stripe or PayPal for real transactions.
